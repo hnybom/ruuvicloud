@@ -1,0 +1,47 @@
+{
+    "data_format": 5, 
+    "humidity": 15.94, 
+    "temperature": 21.9, 
+    "pressure": 1000.54, 
+    "acceleration": 1018.210194409779, 
+    "acceleration_x": -64, 
+    "acceleration_y": -20, 
+    "acceleration_z": 1016, 
+    "tx_power": 4, 
+    "battery": 2191, 
+    "movement_counter": 242, 
+    "measurement_sequence_number": 15269, 
+    "mac": "eff8f5c57959"
+}
+
+{"data_format":5,"humidity":15.92,"temperature":21.9,"pressure":1000.63,"acceleration":1010.7660461254127,"acceleration_x":-72,"acceleration_y":-20,"acceleration_z":1008,"tx_power":4,"battery":2197,"movement_counter":242,"measurement_sequence_number":21493,"mac":"eff8f5c57959"}}],"name":"PartialFailureError","response":{"kind":"bigquery#tableDataInsertAllResponse","insertErrors":[{"index":0,"errors":[{"reason":"invalid","location":"data_format","debugInfo":"","message":"no such field."}]}]},"message":""}
+Error: 
+{"errors":
+[{"errors":
+[{"message":"no such field.","reason":"invalid"}],
+"row":
+{"data_format":5,
+"humidity":15.92,
+"temperature":21.9,
+"pressure":1000.63,
+"acceleration":1010.7660461254127,
+"acceleration_x":-72,
+"acceleration_y":-20,
+"acceleration_z":1008,
+"tx_power":4,
+"battery":2197,
+"movement_counter":242,
+"measurement_sequence_number":21493,
+"mac":"eff8f5c57959"}}],"name":"PartialFailureError","response":{"kind":"bigquery#tableDataInsertAllResponse","insertErrors":[{"index":0,"errors":[{"reason":"invalid","location":"data_format","debugInfo":"","message":"no such field."}]}]},"message":""}
+
+
+
+SELECT DATE(created) as dte, 
+    AVG(humidity) as humidity, 
+    AVG(pressure) as pressure, 
+    AVG(temperature) as temperature
+FROM `ruuvicloud.ruuvi_dataset.ruuvi_data_table`
+WHERE created is not null
+GROUP BY dte
+ORDER BY dte;
+
